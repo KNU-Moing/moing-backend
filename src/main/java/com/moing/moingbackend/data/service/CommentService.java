@@ -1,4 +1,4 @@
-package com.moing.moingbackend.service;
+package com.moing.moingbackend.data.service;
 
 import com.moing.moingbackend.data.dto.CommentDto;
 import com.moing.moingbackend.data.entity.Comment;

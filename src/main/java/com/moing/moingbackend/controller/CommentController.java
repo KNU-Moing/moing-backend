@@ -1,7 +1,7 @@
 package com.moing.moingbackend.controller;
 
 import com.moing.moingbackend.data.dto.CommentDto;
-import com.moing.moingbackend.service.CommentService;
+import com.moing.moingbackend.data.service.CommentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

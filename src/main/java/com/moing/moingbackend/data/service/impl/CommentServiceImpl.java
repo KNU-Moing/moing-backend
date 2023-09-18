@@ -1,9 +1,9 @@
-package com.moing.moingbackend.service.impl;
+package com.moing.moingbackend.data.service.impl;
 
 import com.moing.moingbackend.data.dao.CommentDAO;
 import com.moing.moingbackend.data.dto.CommentDto;
 import com.moing.moingbackend.data.entity.Comment;
-import com.moing.moingbackend.service.CommentService;
+import com.moing.moingbackend.data.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

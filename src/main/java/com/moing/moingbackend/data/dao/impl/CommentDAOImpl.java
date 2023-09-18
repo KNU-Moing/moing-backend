@@ -2,7 +2,7 @@ package com.moing.moingbackend.data.dao.impl;
 
 import com.moing.moingbackend.data.dao.CommentDAO;
 import com.moing.moingbackend.data.entity.Comment;
-import com.moing.moingbackend.repository.CommentRepository;
+import com.moing.moingbackend.data.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
