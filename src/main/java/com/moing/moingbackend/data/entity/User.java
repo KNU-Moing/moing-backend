@@ -19,9 +19,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
     @Column(nullable = false)
-    private String usesrname;
+    private String username;  //이름
     @Column(nullable = true, unique = true)
-    private String account;
+    private String account;  //id
     @Column(nullable = false)
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -30,13 +30,11 @@ public class User {
     @Column(nullable = false)
     private String birthday;
     @Column(nullable = false, unique = true)
-    private String nickname;
-
+    private String nickname;  //닉네임
+    @Column(nullable = false)
+    private String phoneNumber;
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
-
-
-
 
 }
