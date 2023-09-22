@@ -1,0 +1,208 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+        .nav {
+            height: 80px;
+            position: fixed;
+            top: 27px;
+            left: 0;
+            right: 0;
+            margin: 0 44px;
+            background: rgba(217, 217, 217, 0.3);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+        .menus {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+        .menu {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.9);
+            margin: 0 auto;
+        }
+        .logo {
+            margin-left: 35px;
+            margin-bottom: 5px;
+            width: 254px;
+            height: 70px;
+        }
+        .title {
+            margin: 220px auto 0;
+            width: 1150px;
+            height: 81px;
+            font-family: 'Inter';
+            font-weight: 500;
+            font-size: 35px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: #000000;
+            opacity: 0.95;
+        }
+        .content {
+            text-align: left;
+        }
+        .title span {
+            color: #1A77E5;
+        }
+        .loginBox {
+            box-sizing: border-box;
+            width: 1150px;
+            height: 350px;
+            margin: 25px auto;
+            background: #ffffff;
+            border: 2px solid rgba(26, 119, 229, 0.8);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .sheep {
+            width: 304px;
+            height: 230px;
+            margin: 50px 50px 70px 0;
+        }
+        .login {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 0 0 50px;
+        }
+        .loginForm {
+            align-items: center;
+            margin-right: 0;
+        }
+        .loginTable {
+            margin: 0 auto;
+            border-spacing: 12px 15px;
+        }
+        .loginInput {
+            box-sizing: border-box;
+            width: 421px;
+            height: 50px;
+            background: rgba(217, 217, 217, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+        .loginInput::placeholder {
+            padding-left: 15px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 100;
+            font-size: 15px;
+            letter-spacing: 1px;
+        }
+        .loginButton {
+            width: 149px;
+            height: 113px;
+            background: rgba(26, 119, 229, 0.85);
+            border-radius: 10px;
+            font-family: 'Inter';
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 42px;
+            text-algin: center;
+            letter-spacing: 1px;
+            color: #ffffff;
+            border: none;
+        }
+        .hr-sect {
+            display: flex;
+            align-items: center;
+            color: rgba(0, 0, 0, 0.75);;
+            font-size: 20px;
+            font-family: 'Inter';
+            letter-spacing: 1px;
+        }
+        .hr-sect::before {
+            content: "";
+            flex-grow: 1;
+            background: rgba(0, 0, 0, 0.75);;
+            height: 0.5px;
+            font-size: 0px;
+            line-height: 0px;
+            margin: 0px 16px 0 0;
+        }
+        .hr-sect::after {
+            content: "";
+            flex-grow: 1;
+            background: rgba(0, 0, 0, 0.75);;
+            height: 0.5px;
+            font-size: 0px;
+            line-height: 0px;
+            margin: 0 0 0 16px;
+        }
+        .loginLogos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+        .loginLogo {
+            margin: 0 15px;
+            padding-top: 21px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .best{
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 0px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.9);
+            margin-left: 400px;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+<div>
+<div class="title"><div class="content"><span></span>방문을 환영합니다.</div></div>
+<div class="loginBox">
+    <img src="/images/sheep.png" class="sheep"/>
+    <div class="login">
+        <form class="loginForm">
+            <table class="loginTable">
+                <tr><td><input type="text" placeholder="아이디" class="loginInput"></td><td rowspan="2"><input type="button" class="loginButton" value="로그인"></td></tr>
+                <tr><td><input type="text" placeholder="비밀번호" class="loginInput"></td></tr>
+            </table>
+        </form>
+        <div class="hr-sect">
+            또는
+        </div>
+        <div class="loginLogos">
+            <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=569884170100-qithpn912dc88qiip3n5aaaa6t6mdbir.apps.googleusercontent.com&redirect_uri=http://localhost:8080/oauth/google&response_type=code&scope=email%20profile%20openid&access_type=offline">
+            <img src="/images/google.png" class="loginLogo" width="85px" height="85px" />
+            </a>
+            <a href="https://nid.naver.com/oauth2.0/authorize?client_id=FGkZ6bgGUKRbimQV2mFZ&redirect_uri=http://localhost:8080/oauth/naver&response_type=code">
+            <img src="/images/naver.png" class="loginLogo" width="70px" height="70px" />
+            </a>
+            <a href="https://kauth.kakao.com/oauth/authorize?client_id=b982114262092d4b590184cadc62bbfb&redirect_uri=http://localhost:8080/oauth/kakao&response_type=code">
+                <img src="/images/kakao.png" class="loginLogo" width="140px" height="70px"/>
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

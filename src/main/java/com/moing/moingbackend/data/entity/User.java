@@ -32,6 +32,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String nickname;
 
+    private String kakaoId; // 카카오에서 제공하는 사용자 고유 ID
+    private String ageRange;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();

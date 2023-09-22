@@ -9,7 +9,10 @@ import com.moing.moingbackend.data.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/")
@@ -22,6 +25,15 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
+    @GetMapping("/home")
+    public String home(HttpSession session, Model model) {
+        String nickname = (String) session.getAttribute("nickname");
+
+        model.addAttribute("nickname", nickname);
+        return "home";
+    }
+    @GetMapping("/login")
+    public String login() {return "login";}
 
     @GetMapping()
     public ResponseEntity<QuestionResponseDto> getQuestion(Long id) {

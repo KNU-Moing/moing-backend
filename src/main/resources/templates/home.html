@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>강남대학교 커뮤니티</title>
+    <style>
+        .main {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+        }
+        .best{
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 0px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.9);
+            margin-left: 400px;
+            z-index: 3;
+        }
+        .nav {
+            height: 80px;
+            position: fixed;
+            top: 95px;
+            left: 0;
+            right: 0;
+            margin: 0 44px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+        .menus {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+        .menu {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.9);
+            margin: 0 auto;
+        }
+        .logo {
+            margin-left: 35px;
+            margin-bottom: 5px;
+            width: 254px;
+            height: 70px;
+        }
+        .joinBox {
+            margin-top: 27px;
+            align-items: end;
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+        }
+        .login {
+            align-items: center;
+            padding: 8px 22px;
+            background: #3563E9;
+            border-radius: 5px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 24px;
+            letter-spacing: 4px;
+            color: #ffffff;
+            border: none;
+            margin-right: 44px;
+        }
+        .join {
+            background: none;
+            align-items: center;
+            padding: 8px 22px;
+            gap: 10px;
+            border: 1px solid #3563E9;
+            border-radius: 5px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 24px;
+            letter-spacing: 4px;
+            color: #3563E9;
+            margin-right: 44px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .join-disabled {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="joinBox">
+        <a th:href="${nickname} ? '/home' : '/oauth/login'">
+            <button class="login" th:text="${nickname} ? ${nickname}+'님' : '로그인'">로그인</button>
+        </a>
+        <a th:href="${nickname} ? '/oauth/logout' : '/oauth/login'"><button class="join" th:text="${nickname} ? '로그아웃' : '회원가입'">회원가입</button></a>
+    </div>
+
+</div>
+</body>
+</html>
