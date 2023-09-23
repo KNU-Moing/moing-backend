@@ -21,7 +21,8 @@ public class SwaggerConfiguration {
                 .select()
                 .apis(RequestHandlerSelectors.any())  // 모든 패키지에서 API를 스캔
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .host("localhost:8080");
     }
 
     private ApiInfo apiInfo() {

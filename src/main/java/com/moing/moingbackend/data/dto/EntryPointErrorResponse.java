@@ -5,14 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+// 예제 13.22
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CommentDto {
-    private Long id;
-    private Long article_id;
-    private Long user_id;
-    private String answer;
+public class EntryPointErrorResponse {
+
+    private String msg;
 
 }

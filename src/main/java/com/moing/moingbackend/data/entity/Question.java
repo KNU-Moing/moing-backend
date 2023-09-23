@@ -29,7 +29,8 @@ public class Question {
 
     @Column(nullable = false)
     private String content;
-
+    @OneToOne(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Comment comment;
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdDate;

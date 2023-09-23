@@ -16,5 +16,6 @@ public class QuestionDto {
     private String content;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
+    private CommentDto answer;
 
     }
