@@ -119,7 +119,7 @@ public class JwtTokenProvider {
             LOGGER.info("[validateToken] 토큰 유효 체크 완료");
             return !claims.getBody().getExpiration().before(new Date());
         } catch (Exception e) {
-            LOGGER.info("[validateToken] 토큰 유효 체크 예외 발생");
+            LOGGER.error("[validateToken] 토큰 유효 체크 예외 발생: " + e.getMessage());
             return false;
         }
     }

@@ -10,7 +10,9 @@ import javax.persistence.FetchType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -31,6 +33,8 @@ public class UserDto {
     private String email;
     @NotEmpty(message = "아이디는 필수 입력 값입니다.")
     private String account;
+    @NotEmpty(message = "임신일은 필수 입력 값입니다.")
+    private LocalDate pregnancyDate;
     @NotEmpty(message = "비밀번호는 필수 입력 값입니다.")
     @Length(min = 4, max = 16, message = "비밀번호는 4자 이상, 16자 이하로 입력해주세요.")
     private String password;

@@ -16,7 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +40,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-
     public UserDto getUserById(Long id) {
         Optional<User> User = userRepository.findById(id);
         if (User == null) {
@@ -50,6 +51,7 @@ public class UserServiceImpl implements UserService {
         UserResponse.getPassword();
         UserResponse.getAccount();
         UserResponse.getEmail();
+        UserResponse.getPregnancyDate();
         UserResponse.getBirthday();
         UserResponse.getNickname();
         UserResponse.getUsername();
@@ -59,13 +61,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public SignUpResultDto signUp(String account, String password, String username, String email, String birthday, String nickname, String phoneNumber,String role) {
+    public SignUpResultDto signUp(String account, String password, String username, String email, LocalDate pregnancyDate, String birthday, String nickname, String phoneNumber, String role) {
         LOGGER.info("[getSignUpResult] 회원 가입 정보 전달");
         User user;
         if (role.equalsIgnoreCase("admin")) {
             user = User.builder()
                     .username(username)
                     .email(email)
+                    .pregnancyDate(pregnancyDate)
                     .account(account)
                     .birthday(birthday)
                     .nickname(nickname)
@@ -78,6 +81,7 @@ public class UserServiceImpl implements UserService {
                     .username(username)
                     .email(email)
                     .account(account)
+                    .pregnancyDate(pregnancyDate)
                     .birthday(birthday)
                     .nickname(nickname)
                     .phoneNumber(phoneNumber)
