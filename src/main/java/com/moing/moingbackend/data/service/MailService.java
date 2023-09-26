@@ -12,10 +12,10 @@ public class MailService {
         this.javaMailSender = javaMailSender;
     }
 
-    public void sendEmail(String to, String subject, String text) {
+    public void sendEmail(String email, String subject, String text) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(to);
+            message.setTo(email);
             message.setSubject(subject);
             message.setText(text);
 
@@ -25,4 +25,5 @@ public class MailService {
             e.printStackTrace();
         }
     }
+
 }
