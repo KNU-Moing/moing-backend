@@ -67,4 +67,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         webSecurity.ignoring().antMatchers("/v2/api-docs", "/swagger-resources/**",
                 "/swagger-ui.html", "/webjars/**", "/swagger/**", "/sign-api/exception", "/logout");
     }
+    @Bean
+    public PasswordEncoder myPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }
