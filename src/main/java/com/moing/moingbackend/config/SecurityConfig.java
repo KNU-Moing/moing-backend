@@ -36,4 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(authenticationManager(), jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
     }
+    @Bean
+    public PasswordEncoder myPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }
