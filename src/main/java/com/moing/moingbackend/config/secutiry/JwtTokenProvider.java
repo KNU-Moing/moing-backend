@@ -41,7 +41,7 @@ public class JwtTokenProvider {
     private final UserDetailsService userDetailsService; // Spring Security 에서 제공하는 서비스 레이어
 
     @Value("${springboot.jwt.secret}")
-    private String secretKey = "secretKey";
+    private String secretKey;
     private final long tokenValidMillisecond = 1000L * 60 * 60; // 1시간 토큰 유효
 
     /**

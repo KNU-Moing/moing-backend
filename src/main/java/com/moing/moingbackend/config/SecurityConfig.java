@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/swagger-ui/**", "/user/sign-in", "/user/sign-up", "/sign-api/exception", "/emailConfirm", "/**").permitAll()
-                .antMatchers("/question/**", "/Comment/**").hasAnyRole("USER", "ADMIN") // "/question" 및 "/Comment" 엔드포인트에 대한 접근 권한 설정
+                .antMatchers("/question/**", "/Comment/**").hasAnyRole("ROLE_USER", "ROLE_ADMIN") // "/question" 및 "/Comment" 엔드포인트에 대한 접근 권한 설정
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
