@@ -3,6 +3,7 @@ package com.moing.moingbackend.config;
 
 import com.moing.moingbackend.config.secutiry.CustomAccessDeniedHandler;
 import com.moing.moingbackend.config.secutiry.CustomAuthenticationEntryPoint;
+import com.moing.moingbackend.config.secutiry.JwtAuthenticationFilter;
 import com.moing.moingbackend.config.secutiry.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +25,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Order(1)
 @Configuration
-@EnableWebSecurity
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -43,9 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/swagger-ui/**", "/user/sign-in", "/user/sign-up", "/sign-api/exception", "/emailConfirm", "/**").permitAll()
-                .antMatchers("/question/**", "/Comment/**").hasAnyRole("ROLE_USER", "ROLE_ADMIN") // "/question" 및 "/Comment" 엔드포인트에 대한 접근 권한 설정
-                .anyRequest().authenticated()
+                .antMatchers("/swagger-ui/**", "/user/sign-in", "/user/sign-up", "/sign-api/exception", "/emailConfirm").permitAll()
+                .anyRequest().hasAnyRole("USER", "ADMIN") // "/question" 및 "/Comment" 엔드포인트에 대한 접근 권한 설정
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler(new CustomAccessDeniedHandler())

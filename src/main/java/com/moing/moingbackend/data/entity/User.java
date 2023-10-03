@@ -21,6 +21,8 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
     @Column(nullable = false)
     private String username;  //이름
     @Column(nullable = true, unique = true)

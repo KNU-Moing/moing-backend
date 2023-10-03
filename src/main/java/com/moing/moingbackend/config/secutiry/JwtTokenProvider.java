@@ -40,8 +40,7 @@ public class JwtTokenProvider {
     private final Logger LOGGER = LoggerFactory.getLogger(JwtTokenProvider.class);
     private final UserDetailsService userDetailsService; // Spring Security 에서 제공하는 서비스 레이어
 
-    @Value("${springboot.jwt.secret}")
-    private String secretKey;
+    private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private final long tokenValidMillisecond = 1000L * 60 * 60; // 1시간 토큰 유효
 
     /**
@@ -52,25 +51,23 @@ public class JwtTokenProvider {
     protected void init() {
         LOGGER.info("[init] JwtTokenProvider 내 secretKey 초기화 시작");
         System.out.println(secretKey);
-        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes(StandardCharsets.UTF_8));
         System.out.println(secretKey);
         LOGGER.info("[init] JwtTokenProvider 내 secretKey 초기화 완료");
     }
 
     // 예제 13.12
     // JWT 토큰 생성
-    public String createToken(String userUid, List<String> roles) {
+    public String createToken(String userUid, List<String> roles, String account) {
         LOGGER.info("[createToken] 토큰 생성 시작");
-        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
         Claims claims = Jwts.claims().setSubject(userUid);
         claims.put("roles", roles);
-
+        claims.put("account", account);
         Date now = new Date();
         String token = Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + tokenValidMillisecond))
-                .signWith(key) // 암호화 알고리즘, secret 값 세팅
+                .signWith(SignatureAlgorithm.HS256, secretKey) // 암호화 알고리즘, secret 값 세팅
                 .compact();
 
         LOGGER.info("[createToken] 토큰 생성 완료");
@@ -82,7 +79,7 @@ public class JwtTokenProvider {
     public Authentication getAuthentication(String token) {
         LOGGER.info("[getAuthentication] 토큰 인증 정보 조회 시작");
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUsername(token));
-        LOGGER.info("[getAuthentication] 토큰 인증 정보 조회 완료, UserDetails UserName : {}",
+        LOGGER.info("[getAuthentication] 토큰 인증 정보 조회 완료, UserDetails Account : {}",
                 userDetails.getUsername());
         return new UsernamePasswordAuthenticationToken(userDetails, "",
                 userDetails.getAuthorities());
@@ -92,11 +89,10 @@ public class JwtTokenProvider {
     // JWT 토큰에서 회원 구별 정보 추출
     public String getUsername(String token) {
         LOGGER.info("[getUsername] 토큰 기반 회원 구별 정보 추출");
-        String info = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody()
-                .getSubject();
-        LOGGER.info("[getUsername] 토큰 기반 회원 구별 정보 추출 완료, info : {}", info);
-        return info;
-    }
+        String account = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody()
+                .get("account", String.class);
+        LOGGER.info("[getUsername] 토큰 기반 회원 구별 정보 추출 완료, account : {}", account);
+        return account;    }
 
     // 예제 13.15
     /**

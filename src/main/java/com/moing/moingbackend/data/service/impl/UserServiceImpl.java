@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
                     .nickname(nickname)
                     .phoneNumber(phoneNumber)
                     .password(passwordEncoder.encode(password))
-                    .roles(Collections.singletonList("ROLE_ADMIN"))
+                    .roles(Collections.singletonList("ADMIN"))
                     .build();
         } else {
             user = User.builder()
@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
                     .nickname(nickname)
                     .phoneNumber(phoneNumber)
                     .password(passwordEncoder.encode(password))
-                    .roles(Collections.singletonList("ROLE_USER"))
+                    .roles(Collections.singletonList("USER"))
                     .build();
      }
 
@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
         LOGGER.info("[getSignInResult] SignInResultDto 객체 생성");
         SignInResultDto signInResultDto = SignInResultDto.builder()
                 .token(jwtTokenProvider.createToken(String.valueOf(user.getUser_id()),
-                        user.getRoles()))
+                        user.getRoles(), user.getAccount()))
                 .name(user.getUsername())
                 .build();
 
