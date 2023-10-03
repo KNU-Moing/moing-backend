@@ -8,6 +8,8 @@ import com.moing.moingbackend.data.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
@@ -76,6 +78,10 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public void deleteQuestion(Long id) throws Exception {
         questionDAO.deleteQuestion(id);
+    }
+    @Override
+    public List<Question> getAllQuestions() {
+        return questionDAO.getAllQuestions();
     }
 
 

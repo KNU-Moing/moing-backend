@@ -2,6 +2,9 @@ package com.moing.moingbackend.data.service;
 
 import com.moing.moingbackend.data.dto.QuestionDto;
 import com.moing.moingbackend.data.dto.QuestionResponseDto;
+import com.moing.moingbackend.data.entity.Question;
+
+import java.util.List;
 
 public interface QuestionService {
 
@@ -13,6 +16,6 @@ public interface QuestionService {
 
     void deleteQuestion(Long id) throws Exception;
 
-//    List<Question> getAllApplications();
+    List<Question> getAllQuestions();
 
 }
