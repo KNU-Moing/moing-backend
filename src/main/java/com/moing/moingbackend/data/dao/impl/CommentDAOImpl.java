@@ -35,16 +35,16 @@ public class CommentDAOImpl implements CommentDAO {
     }
 
     @Override
-    public Comment updateComment(Comment Comment) throws Exception {
+    public Comment updateComment(Comment comment) throws Exception {
         // id로 기존 데이터를 찾아온다.
-        Optional<Comment> selectComment = commentRepository.findById(Comment.getId());
+        Optional<Comment> selectComment = commentRepository.findById(comment.getId());
 
         // 기존 데이터가 존재하는지 확인한다.
         if (selectComment.isPresent()) {
             Comment existingComment = selectComment.get();
 
             // 수정할 데이터를 설정한다.
-            existingComment.setAnswer(Comment.getAnswer());
+            existingComment.setAnswer(comment.getAnswer());
             // 수정된 데이터를 데이터베이스에 저장한다.
             Comment updatedComment = commentRepository.save(existingComment);
 

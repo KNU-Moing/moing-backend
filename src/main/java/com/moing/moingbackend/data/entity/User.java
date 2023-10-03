@@ -2,9 +2,12 @@ package com.moing.moingbackend.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -17,17 +20,20 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long user_id;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
     @Column(nullable = false)
-<<<<<<< Updated upstream
     private String username;  //이름
-=======
-    private String username;
->>>>>>> Stashed changes
+
     @Column(nullable = true, unique = true)
     private String account;  //id
     @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate pregnancyDate;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = true)
     private String password;
@@ -40,11 +46,10 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
-<<<<<<< Updated upstream
+
     public Long getId() {
         return user_id;
     }
-=======
->>>>>>> Stashed changes
+
 
 }

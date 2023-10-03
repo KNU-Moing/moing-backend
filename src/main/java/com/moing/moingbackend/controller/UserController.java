@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,10 +27,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.*;
 
 @RestController
 @RequestMapping("/user")
@@ -62,13 +61,14 @@ public class UserController {
             @ApiParam(value = "비밀번호", required = true) @RequestParam String password,
             @ApiParam(value = "이름", required = true) @RequestParam String username,
             @ApiParam(value = "이메일", required = true) @RequestParam String email,
+            @ApiParam(value = "임신일", required = true) @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate pregnancyDate,
             @ApiParam(value = "생년월일", required = true) @RequestParam String birthday,
             @ApiParam(value = "닉네임", required = true) @RequestParam String nickname,
             @ApiParam(value = "핸드폰번호", required = true) @RequestParam String phoneNumber,
             @ApiParam(value = "권한", required = true) @RequestParam String role) {
         LOGGER.info("[signUp] 회원가입을 수행합니다. id : {}, password : ****, name : {}, role : {}, phonenumber : {}", account,
                 username, role, phoneNumber);
-        SignUpResultDto signUpResultDto = userService.signUp(account, password, username, email, birthday, nickname, phoneNumber,role);
+        SignUpResultDto signUpResultDto = userService.signUp(account, password, username, email, pregnancyDate, birthday, nickname, phoneNumber,role);
 
         LOGGER.info("[signUp] 회원가입을 완료했습니다. id : {}", account);
         return signUpResultDto;
