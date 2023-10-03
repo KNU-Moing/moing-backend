@@ -26,7 +26,7 @@ public class EmailAuthenticationController {
     public String emailConfirm(
             @RequestParam @ApiParam(value="이메일정보 정보", required = true) String email) throws Exception {
 
-        String confirm = emailService.sendSimpleMessage(email);
+        String confirm = emailService.sendEmail(email);
 
         return confirm;
     }

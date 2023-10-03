@@ -29,7 +29,7 @@ public class User {
 
     @Column(nullable = true, unique = true)
     private String account;  //id
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")

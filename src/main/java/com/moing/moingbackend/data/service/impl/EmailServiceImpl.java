@@ -1,6 +1,7 @@
 package com.moing.moingbackend.data.service.impl;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Properties;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -31,33 +32,46 @@ public class EmailServiceImpl{
 
     @Autowired
     JavaMailSender emailSender;
-
+    private static final String FROM_EMAIL = "knulikelion11@gmail.com";
+    private static final String FROM_NAME = "MOING";
+    private static final String GMAIL_PASSWORD = "gjkw cgln tgen wmth";
     public static final String ePw = createKey();
+    // 이메일 설정
+    public String sendEmail(String to) throws Exception {
+        // 생성된 인증 코드
+        String ePw = createKey();
 
-    private MimeMessage createMessage(String to)throws Exception{
-        System.out.println("보내는 대상 : "+ to);
-        System.out.println("인증 번호 : "+ePw);
-        MimeMessage  message = emailSender.createMimeMessage();
+        MimeMessage message = createMessage(to, ePw);
+        try {
+            emailSender.send(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("이메일 보내기 실패");
+        }
+        return ePw;
+    }
 
-        message.addRecipients(RecipientType.TO, to);//보내는 대상
-        message.setSubject("MOING회원가입 이메일 인증");//제목
+    private MimeMessage createMessage(String to, String ePw) throws Exception {
+        MimeMessage message = emailSender.createMimeMessage();
 
-        String msgg="";
-        msgg+= "<div style='margin:100px;'>";
-        msgg+= "<h1> 안녕하세요 MOING입니다. </h1>";
-        msgg+= "<br>";
-        msgg+= "<p>아래 코드를 회원가입 창으로 돌아가 입력해주세요<p>";
-        msgg+= "<br>";
-        msgg+= "<p>감사합니다!<p>";
-        msgg+= "<br>";
-        msgg+= "<div align='center' style='border:1px solid black; font-family:verdana';>";
-        msgg+= "<h3 style='color:blue;'>회원가입 인증 코드입니다.</h3>";
-        msgg+= "<div style='font-size:130%'>";
-        msgg+= "CODE : <strong>";
-        msgg+= ePw+"</strong><div><br/> ";
-        msgg+= "</div>";
-        message.setText(msgg, "utf-8", "html");//내용
-        message.setFrom(new InternetAddress("knulikelion11@gmail.com","MOING"));//보내는 사람
+        message.addRecipients(RecipientType.TO, to); // 받는 대상
+        message.setSubject("MOING 회원가입 이메일 인증"); // 제목
+
+        String msg = "<div style='margin:100px;'>";
+        msg += "<h1>안녕하세요 MOING입니다.</h1>";
+        msg += "<br>";
+        msg += "<p>아래 코드를 회원가입 창으로 돌아가 입력해주세요</p>";
+        msg += "<br>";
+        msg += "<p>감사합니다!</p>";
+        msg += "<br>";
+        msg += "<div align='center' style='border:1px solid black; font-family:verdana';>";
+        msg += "<h3 style='color:blue;'>회원가입 인증 코드입니다.</h3>";
+        msg += "<div style='font-size:130%'>";
+        msg += "CODE : <strong>" + ePw + "</strong><div><br/> ";
+        msg += "</div>";
+
+        message.setText(msg, "utf-8", "html"); // 내용
+        message.setFrom(new InternetAddress(FROM_EMAIL, FROM_NAME)); // 보내는 사람
 
         return message;
     }
@@ -87,16 +101,4 @@ public class EmailServiceImpl{
 
         return key.toString();
     }
-    public String sendSimpleMessage(String to)throws Exception {
-        // TODO Auto-generated method stub
-        MimeMessage message = createMessage(to);
-        try{//예외처리
-            emailSender.send(message);
-        }catch(MailException es){
-            es.printStackTrace();
-            throw new IllegalArgumentException();
-        }
-        return ePw;
-    }
-
 }
