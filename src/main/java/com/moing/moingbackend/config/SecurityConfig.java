@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/swagger-ui/**", "/user/sign-in", "/user/sign-up", "/sign-api/exception", "/emailConfirm", "/send-email").permitAll()
+                .antMatchers("/swagger-ui/**", "/user/sign-in", "/user/sign-up", "/sign-api/exception", "/emailConfirm", "/send-email","/liked","/liked/count","liked/list").permitAll()
                 .anyRequest().hasAnyRole("USER", "ADMIN") // "/question" 및 "/Comment" 엔드포인트에 대한 접근 권한 설정
                 .and()
                 .exceptionHandling()
