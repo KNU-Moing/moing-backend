@@ -51,7 +51,6 @@ public class JwtTokenProvider {
     protected void init() {
         LOGGER.info("[init] JwtTokenProvider 내 secretKey 초기화 시작");
         System.out.println(secretKey);
-        System.out.println(secretKey);
         LOGGER.info("[init] JwtTokenProvider 내 secretKey 초기화 완료");
     }
 

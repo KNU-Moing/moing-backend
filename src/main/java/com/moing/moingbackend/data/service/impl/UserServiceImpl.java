@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
                     .nickname(nickname)
                     .phoneNumber(phoneNumber)
                     .password(passwordEncoder.encode(password))
-                    .roles(Collections.singletonList("ADMIN"))
+                    .roles(Collections.singletonList("ROLE_ADMIN"))
                     .build();
         } else {
             user = User.builder()
@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
                     .nickname(nickname)
                     .phoneNumber(phoneNumber)
                     .password(passwordEncoder.encode(password))
-                    .roles(Collections.singletonList("USER"))
+                    .roles(Collections.singletonList("ROLE_USER"))
                     .build();
      }
 
