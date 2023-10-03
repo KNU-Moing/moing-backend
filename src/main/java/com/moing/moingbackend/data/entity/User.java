@@ -17,9 +17,13 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private Long id;
     @Column(nullable = false)
+<<<<<<< Updated upstream
     private String username;  //이름
+=======
+    private String username;
+>>>>>>> Stashed changes
     @Column(nullable = true, unique = true)
     private String account;  //id
     @Column(nullable = false)
@@ -36,8 +40,11 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
+<<<<<<< Updated upstream
     public Long getId() {
         return user_id;
     }
+=======
+>>>>>>> Stashed changes
 
 }
