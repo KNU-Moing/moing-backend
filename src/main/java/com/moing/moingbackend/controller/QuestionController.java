@@ -12,6 +12,10 @@ import io.swagger.annotations.ApiImplicitParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -108,6 +112,27 @@ public class QuestionController {
 
         return ResponseEntity.status(HttpStatus.OK).body(questions);
     }
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 발급 받은 access_token", required = true, dataType = "String", paramType = "header")
+    })
+    @GetMapping("/board/list")
+    public ResponseEntity<List<Question>> boardList(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC)
+                                Pageable pageable,
+                            String searchKeyword){
+
+        /*검색기능-3*/
+        List<Question> list = null;
+
+        /*searchKeyword = 검색하는 단어*/
+        if(searchKeyword == null){
+            list =questionService.getAllQuestions(); //기존의 리스트보여줌
+        }else{
+            list = questionService.questionSearchList(searchKeyword); //검색리스트반환
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(list);
+    }
+
 
 }
 
