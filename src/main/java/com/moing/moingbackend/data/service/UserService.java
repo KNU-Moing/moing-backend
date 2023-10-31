@@ -17,7 +17,7 @@ public interface UserService {
     UserDto getUserById(Long id);
 
     SignUpResultDto signUp(String account, String password,
-                           String username, String email, LocalDate pregnancyDate,
+                           String username, String email, String week, LocalDate pregnancyDate,
                            String birthday,
                            String nickname, String phoneNumber, String role);
     SignInResultDto signIn(String account, String password);

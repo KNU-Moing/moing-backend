@@ -43,6 +43,8 @@ public class User {
     private String nickname;  //닉네임
     @Column(nullable = false)
     private String phoneNumber;
+    @Column(nullable = false)
+    private String week; //임신주차
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
@@ -50,6 +52,5 @@ public class User {
     public Long getId() {
         return user_id;
     }
-
 
 }
