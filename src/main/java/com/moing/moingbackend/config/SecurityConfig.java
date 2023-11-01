@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/swagger-ui/**", "/user/sign-in", "/user/sign-up", "/sign-api/exception", "/emailConfirm", "/sendEmail","/liked","/liked/count","liked/list", "/test","/ws/chat").permitAll()
+                .antMatchers("/swagger-ui/**", "/user/sign-in", "/user/sign-up", "/sign-api/exception", "/emailConfirm", "/sendEmail","/liked","/liked/count","liked/list", "/test","/ws/chat","ws:localhost:8080/test","/chat", "/chat/room", "/rooms", "/room/enter/{roomId}","/room/{roomId}").permitAll()
                 .anyRequest().hasAnyRole("USER", "ADMIN") // "/question" 및 "/Comment" 엔드포인트에 대한 접근 권한 설정
                 .and()
                 .exceptionHandling()
@@ -65,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity webSecurity) {
         webSecurity.ignoring().antMatchers("/v2/api-docs", "/swagger-resources/**",
-                "/swagger-ui.html", "/webjars/**", "/swagger/**", "/sign-api/exception", "/logout","ws:localhost:8080/test","/chat");
+                "/swagger-ui.html", "/webjars/**", "/swagger/**", "/sign-api/exception", "/logout","ws:localhost:8080/test","/chat", "/chat/room", "/rooms", "/room/enter/{roomId}","/room/{roomId}");
     }
     @Bean
     public PasswordEncoder myPasswordEncoder() {
