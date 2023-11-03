@@ -116,9 +116,7 @@ public class QuestionController {
             @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 발급 받은 access_token", required = true, dataType = "String", paramType = "header")
     })
     @GetMapping("/board/list")
-    public ResponseEntity<List<Question>> boardList(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC)
-                                Pageable pageable,
-                            String searchKeyword){
+    public ResponseEntity<List<Question>> boardList(String searchKeyword){
 
         /*검색기능-3*/
         List<Question> list = null;
@@ -132,7 +130,6 @@ public class QuestionController {
 
         return ResponseEntity.status(HttpStatus.OK).body(list);
     }
-
 
 }
 
