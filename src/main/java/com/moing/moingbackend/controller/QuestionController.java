@@ -106,6 +106,9 @@ public class QuestionController {
         return ResponseEntity.status(HttpStatus.OK).body("정상적으로 삭제되었습니다.");
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 발급 받은 access_token", required = true, dataType = "String", paramType = "header")
+    })
     @GetMapping("/all")
     public ResponseEntity<List<Question>> getAllQuestions() {
         List<Question> questions = questionService.getAllQuestions();
