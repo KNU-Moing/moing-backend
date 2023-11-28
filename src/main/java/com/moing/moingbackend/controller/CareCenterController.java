@@ -42,6 +42,7 @@ public class CareCenterController {
 
         return ResponseEntity.status(HttpStatus.OK).body(careCenterDtoResponse);
     }
+
     @ApiImplicitParams({
             @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 발급 받은 access_token", required = true, dataType = "String", paramType = "header")
     })
@@ -59,10 +60,8 @@ public class CareCenterController {
     @PutMapping("/{id}")
     public ResponseEntity<CareCenterDto> updateCareCenter(
             @PathVariable Long id,
-            @RequestParam("name") String name, HttpServletRequest request) throws Exception {
-        CareCenterDto careCenterDto = new CareCenterDto();
-        careCenterDto.setName(name);
-        careCenterDto.setRegion(careCenterDto.getRegion());
+            @RequestBody CareCenterDto careCenterDto, HttpServletRequest request) throws Exception {
+
         // CareCenterService를 사용하여 데이터 업데이트
         CareCenterDto updatedCareCenterDto = careCenterService.updateCareCenter(id, careCenterDto);
 
@@ -105,7 +104,6 @@ public class CareCenterController {
         }else{
             list = careCenterService.careCenterNameSearchList(searchKeyword); //검색리스트반환
         }
-
         return ResponseEntity.status(HttpStatus.OK).body(list);
     }
     @ApiImplicitParams({
@@ -123,8 +121,6 @@ public class CareCenterController {
         }else{
             list = careCenterService.careCenterRegionSearchList(searchKeyword); //검색리스트반환
         }
-
         return ResponseEntity.status(HttpStatus.OK).body(list);
     }
-
 }

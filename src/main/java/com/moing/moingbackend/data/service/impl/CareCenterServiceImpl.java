@@ -30,10 +30,13 @@ public class CareCenterServiceImpl implements CareCenterService {
             return null;
         }
         CareCenterDto careCenterResponse = new CareCenterDto();
-
-        careCenterResponse.setId(careCenter.getId());
         careCenterResponse.setName(careCenter.getName());
         careCenterResponse.setRegion(careCenter.getRegion());
+        careCenterResponse.setNum(careCenter.getNum());
+        careCenterResponse.setTel(careCenter.getTel());
+        careCenterResponse.setAddress(careCenter.getAddress());
+        careCenterResponse.setIntroduction(careCenter.getIntroduction());
+        careCenterResponse.setAddressNum(careCenter.getAddressNum());
         return careCenterResponse;
     }
 
@@ -44,12 +47,23 @@ public class CareCenterServiceImpl implements CareCenterService {
         careCenter.setId(careCenterDto.getId());
         careCenter.setName(careCenterDto.getName());
         careCenter.setRegion(careCenterDto.getRegion());
+        careCenter.setNum(careCenterDto.getNum());
+        careCenter.setTel(careCenterDto.getTel());
+        careCenter.setAddress(careCenterDto.getAddress());
+        careCenter.setIntroduction(careCenterDto.getIntroduction());
+        careCenter.setAddressNum(careCenterDto.getAddressNum());
 
         CareCenter savedCareCenter = careCenterDAO.insertCareCenter(careCenter);
+
         CareCenterDto careCenterResponse = new CareCenterDto();
         careCenterResponse.setId(savedCareCenter.getId());
         careCenterResponse.setName(savedCareCenter.getName());
         careCenterResponse.setRegion(savedCareCenter.getRegion());
+        careCenterResponse.setNum(savedCareCenter.getNum());
+        careCenterResponse.setTel(savedCareCenter.getTel());
+        careCenterResponse.setAddress(savedCareCenter.getAddress());
+        careCenterResponse.setIntroduction(savedCareCenter.getIntroduction());
+        careCenterResponse.setAddressNum(savedCareCenter.getAddressNum());
 
         return careCenterResponse;
     }
@@ -65,7 +79,13 @@ public class CareCenterServiceImpl implements CareCenterService {
         }
         // 수정할 데이터를 설정한다.
         careCenter.setName(careCenterDto.getName());
-//        careCenter.setRegion(careCenterDto.getRegion());
+        careCenter.setName(careCenterDto.getName());
+        careCenter.setRegion(careCenterDto.getRegion());
+        careCenter.setNum(careCenterDto.getNum());
+        careCenter.setTel(careCenterDto.getTel());
+        careCenter.setAddress(careCenterDto.getAddress());
+        careCenter.setIntroduction(careCenterDto.getIntroduction());
+        careCenter.setAddressNum(careCenterDto.getAddressNum());
 
         // 수정된 데이터를 데이터베이스에 저장한다.
         CareCenter updatedCareCenter = careCenterDAO.updateCareCenter(careCenter);
@@ -74,7 +94,12 @@ public class CareCenterServiceImpl implements CareCenterService {
         CareCenterDto updatedCareCenterDto = new CareCenterDto();
         updatedCareCenterDto.setId(updatedCareCenter.getId());
         updatedCareCenterDto.setName(updatedCareCenter.getName());
-//        updatedCareCenterDto.setRegion(updatedCareCenter.getRegion());
+        updatedCareCenterDto.setRegion(updatedCareCenter.getRegion());
+        updatedCareCenterDto.setNum(updatedCareCenter.getNum());
+        updatedCareCenterDto.setTel(updatedCareCenter.getTel());
+        updatedCareCenterDto.setAddress(updatedCareCenter.getAddress());
+        updatedCareCenterDto.setIntroduction(updatedCareCenter.getIntroduction());
+        updatedCareCenterDto.setAddressNum(updatedCareCenter.getAddressNum());
         return updatedCareCenterDto;
     }
 

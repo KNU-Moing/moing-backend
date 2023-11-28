@@ -43,8 +43,12 @@ public class CareCenterDAOImpl implements CareCenterDAO {
             CareCenter existingCareCenter = selectCareCenter.get();
             // 수정할 데이터를 설정한다.
             existingCareCenter.setName(careCenter.getName());
-//            existingCareCenter.setRegion(careCenter.getRegion());
-
+            existingCareCenter.setRegion(careCenter.getRegion());
+            existingCareCenter.setNum(careCenter.getNum());
+            existingCareCenter.setTel(careCenter.getTel());
+            existingCareCenter.setAddress(careCenter.getAddress());
+            existingCareCenter.setIntroduction(careCenter.getIntroduction());
+            existingCareCenter.setAddressNum(careCenter.getAddressNum());
             // 수정된 데이터를 데이터베이스에 저장한다.
             CareCenter updatedCareCenter = careCenterRepository.save(existingCareCenter);
 
