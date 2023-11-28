@@ -29,7 +29,7 @@ public class User {
 
     @Column(nullable = true, unique = true)
     private String account;  //id
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -43,6 +43,8 @@ public class User {
     private String nickname;  //닉네임
     @Column(nullable = false)
     private String phoneNumber;
+    @Column(nullable = false)
+    private String week; //임신주차
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
@@ -50,6 +52,5 @@ public class User {
     public Long getId() {
         return user_id;
     }
-
 
 }

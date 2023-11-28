@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -68,5 +69,9 @@ public class QuestionDAOImpl implements QuestionDAO {
         } else {
             throw new Exception();
         }
+    }
+    @Override
+    public List<Question> getAllQuestions() {
+        return questionRepository.findAll();
     }
 }

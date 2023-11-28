@@ -4,18 +4,25 @@ import com.moing.moingbackend.data.dao.QuestionDAO;
 import com.moing.moingbackend.data.dto.QuestionDto;
 import com.moing.moingbackend.data.dto.QuestionResponseDto;
 import com.moing.moingbackend.data.entity.Question;
+import com.moing.moingbackend.data.repository.QuestionRepository;
 import com.moing.moingbackend.data.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionDAO questionDAO;
+    private final QuestionRepository questionRepository;
 
     @Autowired
-    public QuestionServiceImpl(QuestionDAO questionDAO) {
+    public QuestionServiceImpl(QuestionDAO questionDAO, QuestionRepository questionRepository) {
         this.questionDAO = questionDAO;
+        this.questionRepository = questionRepository;
     }
 
 
@@ -77,6 +84,14 @@ public class QuestionServiceImpl implements QuestionService {
     public void deleteQuestion(Long id) throws Exception {
         questionDAO.deleteQuestion(id);
     }
+    @Override
+    public List<Question> getAllQuestions() {
+        return questionDAO.getAllQuestions();
+    }
+
+    @Override
+    public List<Question> questionSearchList(String searchKeyword) {
+        return questionRepository.findByTitleContaining(searchKeyword);    }
 
 
 }

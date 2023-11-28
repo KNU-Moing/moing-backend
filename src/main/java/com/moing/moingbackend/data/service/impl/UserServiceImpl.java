@@ -53,6 +53,7 @@ public class UserServiceImpl implements UserService {
         UserResponse.getEmail();
         UserResponse.getPregnancyDate();
         UserResponse.getBirthday();
+        UserResponse.getWeek();
         UserResponse.getNickname();
         UserResponse.getUsername();
         UserResponse.getPhoneNumber();
@@ -62,7 +63,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public SignUpResultDto signUp(String account, String password, String username, String email, LocalDate pregnancyDate, String birthday, String nickname, String phoneNumber, String role) {
+    public SignUpResultDto signUp(String account, String password, String username, String email, String week,LocalDate pregnancyDate, String birthday, String nickname, String phoneNumber, String role) {
         LOGGER.info("[getSignUpResult] 회원 가입 정보 전달");
         User user;
         if (role.equalsIgnoreCase("ADMIN")) {
@@ -73,6 +74,7 @@ public class UserServiceImpl implements UserService {
                     .account(account)
                     .birthday(birthday)
                     .nickname(nickname)
+                    .week(week)
                     .phoneNumber(phoneNumber)
                     .password(passwordEncoder.encode(password))
                     .roles(Collections.singletonList("ROLE_ADMIN"))
@@ -85,6 +87,7 @@ public class UserServiceImpl implements UserService {
                     .pregnancyDate(pregnancyDate)
                     .birthday(birthday)
                     .nickname(nickname)
+                    .week(week)
                     .phoneNumber(phoneNumber)
                     .password(passwordEncoder.encode(password))
                     .roles(Collections.singletonList("ROLE_USER"))

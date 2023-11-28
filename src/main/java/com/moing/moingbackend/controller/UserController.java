@@ -61,6 +61,7 @@ public class UserController {
             @ApiParam(value = "비밀번호", required = true) @RequestParam String password,
             @ApiParam(value = "이름", required = true) @RequestParam String username,
             @ApiParam(value = "이메일", required = true) @RequestParam String email,
+            @ApiParam(value = "임신주차", required = true) @RequestParam String week,
             @ApiParam(value = "임신일", required = true) @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate pregnancyDate,
             @ApiParam(value = "생년월일", required = true) @RequestParam String birthday,
             @ApiParam(value = "닉네임", required = true) @RequestParam String nickname,
@@ -68,7 +69,7 @@ public class UserController {
             @ApiParam(value = "권한", required = true) @RequestParam String role) {
         LOGGER.info("[signUp] 회원가입을 수행합니다. id : {}, password : ****, name : {}, role : {}, phonenumber : {}", account,
                 username, role, phoneNumber);
-        SignUpResultDto signUpResultDto = userService.signUp(account, password, username, email, pregnancyDate, birthday, nickname, phoneNumber,role);
+        SignUpResultDto signUpResultDto = userService.signUp(account, password, username, email, week, pregnancyDate, birthday, nickname, phoneNumber,role);
 
         LOGGER.info("[signUp] 회원가입을 완료했습니다. id : {}", account);
         return signUpResultDto;

@@ -2,6 +2,11 @@ package com.moing.moingbackend.data.service;
 
 import com.moing.moingbackend.data.dto.QuestionDto;
 import com.moing.moingbackend.data.dto.QuestionResponseDto;
+import com.moing.moingbackend.data.entity.Question;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 public interface QuestionService {
 
@@ -13,6 +18,8 @@ public interface QuestionService {
 
     void deleteQuestion(Long id) throws Exception;
 
-//    List<Question> getAllApplications();
+    List<Question> getAllQuestions();
+
+    public List<Question> questionSearchList(String searchKeyword);
 
 }
