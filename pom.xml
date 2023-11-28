@@ -104,6 +104,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
+
 		<!-- Swagger 관련 의존성 -->
 		<dependency>
 			<groupId>io.springfox</groupId>
