@@ -12,4 +12,10 @@ public class UpdateDiaryDto {
     private String image;
     private String weeks;
     private String content;
+
+    private String bloodPressure;
+    private String weight;
+    private String specialProsecutor;
+    private Double babySize;
+    private Double babyWeight;
 }
