@@ -10,17 +10,19 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="liked")
-public class Liked extends BaseEntity {
+@Table(name="sumone")
+public class Sumone extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "question")
-    private Question question;
+    @Column(nullable = false)
+    private String question;
+    @Column(nullable = false)
+    private String answer;
 
     @ManyToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "uid")
+    @ToString.Exclude
     private User user;
 }
