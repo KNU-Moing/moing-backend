@@ -26,4 +26,15 @@ public class Diary extends BaseEntity{
     private String weeks;
     @Column(nullable = false)
     private String content;
+
+    @Column(nullable = false)
+    private String bloodPressure;
+    @Column(nullable = false)
+    private String weight;
+    @Column(nullable = false)
+    private String specialProsecutor;
+    @Column(nullable = false)
+    private Double babySize;
+    @Column(nullable = false)
+    private Double babyWeight;
 }

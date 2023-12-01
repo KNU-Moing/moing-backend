@@ -32,6 +32,11 @@ public class DiaryServiceImpl implements DiaryService {
         diaryResponsedto.setContent(diary.getContent());
         diaryResponsedto.setImage(diary.getImage());
         diaryResponsedto.setWeeks(diary.getWeeks());
+        diaryResponsedto.setBloodPressure(diary.getBloodPressure());
+        diaryResponsedto.setWeight(diary.getWeight());
+        diaryResponsedto.setSpecialProsecutor(diary.getSpecialProsecutor());
+        diaryResponsedto.setBabySize(diary.getBabySize());
+        diaryResponsedto.setBabyWeight(diary.getBabyWeight());
         return diaryResponsedto;
     }
 
@@ -43,6 +48,11 @@ public class DiaryServiceImpl implements DiaryService {
         diary.setContent(diaryDto.getContent());
         diary.setImage(diaryDto.getImage());
         diary.setWeeks(diaryDto.getWeeks());
+        diary.setBloodPressure(diaryDto.getBloodPressure());
+        diary.setWeight(diaryDto.getWeight());
+        diary.setSpecialProsecutor(diaryDto.getSpecialProsecutor());
+        diary.setBabySize(diaryDto.getBabySize());
+        diary.setBabyWeight(diaryDto.getBabyWeight());
 
         Diary savedDiary = diaryDAO.insertDiary(diary);
 
@@ -51,6 +61,12 @@ public class DiaryServiceImpl implements DiaryService {
         diaryResponsedto.setContent(diary.getContent());
         diaryResponsedto.setImage(diary.getImage());
         diaryResponsedto.setWeeks(diary.getWeeks());
+        diaryResponsedto.setBloodPressure(diary.getBloodPressure());
+        diaryResponsedto.setWeight(diary.getWeight());
+        diaryResponsedto.setSpecialProsecutor(diary.getSpecialProsecutor());
+        diaryResponsedto.setBabySize(diary.getBabySize());
+        diaryResponsedto.setBabyWeight(diary.getBabyWeight());
+
         return diaryResponsedto;
     }
 
@@ -65,6 +81,11 @@ public class DiaryServiceImpl implements DiaryService {
         diaryResponseDto.setContent(changedDiary.getContent());
         diaryResponseDto.setWeeks(changedDiary.getWeeks());
         diaryResponseDto.setImage(changedDiary.getImage());
+        diaryResponseDto.setBloodPressure(changedDiary.getBloodPressure());
+        diaryResponseDto.setWeight(changedDiary.getWeight());
+        diaryResponseDto.setSpecialProsecutor(changedDiary.getSpecialProsecutor());
+        diaryResponseDto.setBabySize(changedDiary.getBabySize());
+        diaryResponseDto.setBabyWeight(changedDiary.getBabyWeight());
 
         return diaryResponseDto;
     }

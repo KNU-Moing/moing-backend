@@ -42,8 +42,14 @@ public class DiaryDAOImpl implements DiaryDAO {
             Diary existingDiary = selectedDiary.get();
             existingDiary.setId(updateDiaryDto.getId());
             existingDiary.setContent(updateDiaryDto.getContent());
-            existingDiary.setImage(updateDiaryDto.getContent());
-            existingDiary.setWeeks(updateDiaryDto.getContent());
+            existingDiary.setImage(updateDiaryDto.getImage());  // 수정된 부분
+            existingDiary.setWeeks(updateDiaryDto.getWeeks());  // 수정된 부분
+            existingDiary.setBloodPressure(updateDiaryDto.getBloodPressure());  // 수정된 부분
+            existingDiary.setWeight(updateDiaryDto.getWeight());  // 수정된 부분
+            existingDiary.setSpecialProsecutor(updateDiaryDto.getSpecialProsecutor());  // 수정된 부분
+            existingDiary.setBabySize(updateDiaryDto.getBabySize());  // 수정된 부분
+            existingDiary.setBabyWeight(updateDiaryDto.getBabyWeight());  // 수정된 부분
+
 
             Diary updatedDiary = diaryRepository.save(existingDiary);
 
