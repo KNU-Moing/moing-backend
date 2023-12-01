@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="user")
+@Table(name="naverUser")
 public class NaverUser {
 
     @Id
