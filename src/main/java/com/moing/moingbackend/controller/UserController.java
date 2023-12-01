@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 @RestController
@@ -61,14 +62,25 @@ public class UserController {
             @ApiParam(value = "비밀번호", required = true) @RequestParam String password,
             @ApiParam(value = "이름", required = true) @RequestParam String username,
             @ApiParam(value = "이메일", required = true) @RequestParam String email,
-            @ApiParam(value = "임신주차", required = true) @RequestParam String week,
             @ApiParam(value = "임신일", required = true) @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate pregnancyDate,
             @ApiParam(value = "생년월일", required = true) @RequestParam String birthday,
             @ApiParam(value = "닉네임", required = true) @RequestParam String nickname,
             @ApiParam(value = "핸드폰번호", required = true) @RequestParam String phoneNumber,
             @ApiParam(value = "권한", required = true) @RequestParam String role) {
-        LOGGER.info("[signUp] 회원가입을 수행합니다. id : {}, password : ****, name : {}, role : {}, phonenumber : {}", account,
-                username, role, phoneNumber);
+
+        // 현재 날짜를 가져옵니다.
+        LocalDate currentDate = LocalDate.now();
+
+        // 임신 시작일로부터 현재 날짜까지의 기간을 계산합니다.
+        long days = ChronoUnit.DAYS.between(pregnancyDate, currentDate);
+
+        // 일 단위로 계산한 값을 7로 나누어 전체 주차를 계산합니다.
+        int calculatedWeek = (int) (days / 7);
+
+        // 계산된 주차를 week에 설정합니다.
+        String week = String.valueOf(calculatedWeek);
+        LOGGER.info("[signUp] 회원가입을 수행합니다. id : {}, password : ****, name : {}, role : {}, phonenumber : {}, week : {}", account,
+                username, role, phoneNumber, week);
         SignUpResultDto signUpResultDto = userService.signUp(account, password, username, email, week, pregnancyDate, birthday, nickname, phoneNumber,role);
 
         LOGGER.info("[signUp] 회원가입을 완료했습니다. id : {}", account);
