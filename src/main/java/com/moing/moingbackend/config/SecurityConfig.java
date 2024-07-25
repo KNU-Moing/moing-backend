@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/swagger-ui/**", "/user/sign-in", "/user/sign-up", "/sign-api/exception", "/emailConfirm", "/sendEmail","/liked","/liked/count","liked/list"
                              , "/test","/ws/chat","ws:localhost:8080/test","/chat", "/chat/room", "/rooms", 
-                             "/room/enter/{roomId}","/room/{roomId}","/user/login/naver/**","/nid.naver.com/oauth2.0/token").permitAll()
+                             "/room/enter/{roomId}","/room/{roomId}","/user/login/naver/**","/nid.naver.com/oauth2.0/token","/", "/index.html", "/public/**").permitAll()
 
                 .anyRequest().hasAnyRole("USER", "ADMIN") // "/question" 및 "/Comment" 엔드포인트에 대한 접근 권한 설정
                 .and()
